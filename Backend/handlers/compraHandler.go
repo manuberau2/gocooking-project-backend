@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"GoCooking/Backend/dto"
-	"GoCooking/Backend/service"
-	"GoCooking/Backend/utils"
+	"gocooking-backend/dto"
+	"gocooking-backend/service"
+	"gocooking-backend/utils"
 	"log"
 	"net/http"
 

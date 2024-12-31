@@ -1,10 +1,10 @@
 package clients
 
 import (
-	"GoCooking/Backend/clients/responses"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"gocooking-backend/clients/responses"
 	"io/ioutil"
 	"net/http"
 )

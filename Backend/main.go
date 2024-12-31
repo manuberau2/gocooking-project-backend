@@ -1,11 +1,11 @@
 package main
 
 import (
-	"GoCooking/Backend/clients"
-	"GoCooking/Backend/handlers"
-	"GoCooking/Backend/middlewares"
-	"GoCooking/Backend/repositories"
-	"GoCooking/Backend/service"
+	"gocooking-backend/clients"
+	"gocooking-backend/handlers"
+	"gocooking-backend/middlewares"
+	"gocooking-backend/repositories"
+	"gocooking-backend/service"
 	"log"
 
 	"github.com/gin-gonic/gin"

@@ -1,8 +1,8 @@
 package dto
 
 import (
-	"GoCooking/Backend/model"
-	"GoCooking/Backend/utils"
+	"gocooking-backend/model"
+	"gocooking-backend/utils"
 	"time"
 )
 

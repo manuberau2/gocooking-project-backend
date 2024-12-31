@@ -1,7 +1,7 @@
 package model
 
 import (
-	"GoCooking/Backend/utils"
+	"gocooking-backend/utils"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"

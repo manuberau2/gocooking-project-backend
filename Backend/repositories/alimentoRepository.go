@@ -1,9 +1,9 @@
 package repositories
 
 import (
-	"GoCooking/Backend/model"
 	"context"
 	"errors"
+	"gocooking-backend/model"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"

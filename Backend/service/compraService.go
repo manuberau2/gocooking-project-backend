@@ -1,9 +1,9 @@
 package service
 
 import (
-	"GoCooking/Backend/dto"
-	"GoCooking/Backend/repositories"
-	"GoCooking/Backend/utils"
+	"gocooking-backend/dto"
+	"gocooking-backend/repositories"
+	"gocooking-backend/utils"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

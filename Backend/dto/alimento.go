@@ -1,9 +1,9 @@
 package dto
 
 import (
-	"GoCooking/Backend/model"
-	"GoCooking/Backend/utils"
 	"errors"
+	"gocooking-backend/model"
+	"gocooking-backend/utils"
 )
 
 type Alimento struct {

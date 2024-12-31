@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"GoCooking/Backend/clients/responses"
+	"gocooking-backend/clients/responses"
 )
 
 type Usuario struct {

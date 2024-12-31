@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"GoCooking/Backend/clients"
-	"GoCooking/Backend/utils"
+	"gocooking-backend/clients"
+	"gocooking-backend/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

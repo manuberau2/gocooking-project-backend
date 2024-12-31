@@ -1,10 +1,10 @@
 package repositories
 
 import (
-	"GoCooking/Backend/dto"
-	"GoCooking/Backend/model"
 	"context"
 	"errors"
+	"gocooking-backend/dto"
+	"gocooking-backend/model"
 	"log"
 	"strings"
 	"time"

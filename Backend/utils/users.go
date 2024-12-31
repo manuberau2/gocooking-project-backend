@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"GoCooking/Backend/clients/responses"
+	"gocooking-backend/clients/responses"
 
 	"github.com/gin-gonic/gin"
 )
