@@ -1,9 +1,7 @@
 package handler
 
 import (
-	"gocooking-backend/clients"
 	"gocooking-backend/handlers"
-	"gocooking-backend/middlewares"
 	"gocooking-backend/repositories"
 	"gocooking-backend/service"
 	"net/http"
@@ -56,10 +54,10 @@ func dependencies() {
 
 // mappingRoutes defines all the routes for the application
 func mappingRoutes() {
-	authClients := clients.NewAuthClient()
+	/*authClients := clients.NewAuthClient()
 	authMiddleware := middlewares.NewAuthMiddleware(authClients)
 	router.Use(middlewares.CORSMiddleware())
-	router.Use(authMiddleware.ValidateToken)
+	router.Use(authMiddleware.ValidateToken)*/
 
 	// Alimentos routes
 	groupAlimentos := router.Group("/alimentos")
