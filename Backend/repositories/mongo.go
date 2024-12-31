@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"context"
+	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -23,7 +24,7 @@ func (mongoDB *MongoDB) GetClient() *mongo.Client {
 }
 
 func (mongoDB *MongoDB) Connect() error {
-	clientOptions := options.Client().ApplyURI("mongodb+srv://manuberau:Manub123?@gocooking-cluster.f6qrj.mongodb.net/?retryWrites=true&w=majority&appName=gocooking-cluster")
+	clientOptions := options.Client().ApplyURI(os.Getenv("MONGO_URI"))
 
 	client, err := mongo.Connect(context.Background(), clientOptions)
 
