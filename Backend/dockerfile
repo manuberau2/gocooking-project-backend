@@ -1,5 +1,5 @@
 # Usar una imagen base de Go 1.22.5
-FROM golang:1.22.5-alpine
+FROM golang:1.23
 
 # Configurar el entorno de trabajo
 WORKDIR /app
