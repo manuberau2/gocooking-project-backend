@@ -36,11 +36,17 @@ func NewRecetaRepository(db DB) *RecetaRepository {
 }
 
 func (repository RecetaRepository) GetRecetas(usuarioID string) (*[]model.Receta, error) {
+	log.Printf("Iniciando la obtención de recetas para el usuario ID: %s", usuarioID) // Log de inicio
+
+	// Construcción del filtro para la consulta
 	filtro := bson.M{
 		"id_usuario": usuarioID,
 	}
+
+	// Realizar la consulta a la base de datos
 	cursor, err := repository.db.GetClient().Database("gocooking").Collection("recetas").Find(context.TODO(), filtro)
 	if err != nil {
+		log.Printf("Error al obtener recetas para el usuario ID %s: %v", usuarioID, err) // Log de error
 		return nil, err
 	}
 	defer cursor.Close(context.TODO())
@@ -49,28 +55,40 @@ func (repository RecetaRepository) GetRecetas(usuarioID string) (*[]model.Receta
 	for cursor.Next(context.Background()) {
 		var receta model.Receta
 		if err := cursor.Decode(&receta); err != nil {
+			log.Printf("Error al decodificar receta para el usuario ID %s: %v", usuarioID, err) // Log de error de decodificación
 			return nil, err
 		}
-		// por cada receta, buscamos que los ingredientes estén disponibles en la coleccion de alimentos
+
+		// Por cada receta, verificamos si los ingredientes están disponibles en la colección de alimentos
 		disponible := true
 		for _, ingrediente := range receta.Ingredientes {
 			var alimento model.Alimento
 			err := repository.db.GetClient().Database("gocooking").Collection("alimentos").FindOne(context.TODO(), bson.M{"_id": ingrediente.AlimentoId}).Decode(&alimento)
 			if err != nil {
+				log.Printf("Error al obtener alimento con ID %s para la receta del usuario ID %s: %v", ingrediente.AlimentoId, usuarioID, err) // Log de error al obtener alimento
 				return nil, err
 			}
 			if alimento.CantidadActual < ingrediente.Cantidad {
+				log.Printf("Ingrediente no disponible. ID alimento: %s, cantidad requerida: %d, cantidad disponible: %d", ingrediente.AlimentoId, ingrediente.Cantidad, alimento.CantidadActual) // Log de falta de ingrediente
 				disponible = false
 				break
 			}
 		}
+
+		// Solo agregamos la receta si todos los ingredientes están disponibles
 		if disponible {
 			recetas = append(recetas, receta)
+			log.Printf("Receta agregada a la lista de recetas disponibles para el usuario ID %s: %s", usuarioID, receta.Nombre) // Log de receta agregada
 		}
 	}
+
+	// Verificamos si hubo un error durante la iteración del cursor
 	if err := cursor.Err(); err != nil {
+		log.Printf("Error en el cursor para el usuario ID %s: %v", usuarioID, err) // Log de error en cursor
 		return nil, err
 	}
+
+	log.Printf("Recetas obtenidas para el usuario ID %s: %d recetas encontradas", usuarioID, len(recetas)) // Log de éxito con cantidad de recetas
 	return &recetas, nil
 }
 

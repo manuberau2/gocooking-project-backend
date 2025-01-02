@@ -38,7 +38,7 @@ func dependencies() {
 	var recetasService service.RecetaInterface
 	var comprasService service.CompraInterface
 	//Inyectar repositorios
-	database = repositories.NewMongoDB()
+	database, _ = repositories.NewMongoDB()
 	alimentosRepository = repositories.NewAlimentoRepository(database)
 	recetasRepository = repositories.NewRecetaRepository(database)
 	comprasRepository = repositories.NewCompraRepository(database)
