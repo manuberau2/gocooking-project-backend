@@ -3,6 +3,7 @@ package repositories
 import (
 	"context"
 	"log"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -43,7 +44,7 @@ func (mongoDB *MongoDB) Connect() error {
 	}
 
 	// Configurar las opciones de conexión
-	clientOptions := options.Client().ApplyURI("mongodb+srv://manuberau:Manub123?@gocooking-cluster.f6qrj.mongodb.net/?retryWrites=true&w=majority&appName=gocooking-cluster")
+	clientOptions := options.Client().ApplyURI(os.Getenv("MONGO_URI"))
 	log.Printf("Conectando a MongoDB con URI: %s", clientOptions.GetURI()) // Log de URI
 
 	// Intentar conectar a MongoDB
