@@ -2,7 +2,6 @@ package repositories
 
 import (
 	"context"
-	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -24,10 +23,13 @@ func (mongoDB *MongoDB) GetClient() *mongo.Client {
 }
 
 func (mongoDB *MongoDB) Connect() error {
-	clientOptions := options.Client().ApplyURI(os.Getenv("MONGO_URI"))
+	if mongoDB.Client != nil {
+		mongoDB.Disconnect() // Cierra la conexión previa si existe
+	}
+
+	clientOptions := options.Client().ApplyURI("mongodb+srv://manuberau:Manub123?@gocooking-cluster.f6qrj.mongodb.net/?retryWrites=true&w=majority&appName=gocooking-cluster")
 
 	client, err := mongo.Connect(context.Background(), clientOptions)
-
 	if err != nil {
 		return err
 	}
@@ -38,7 +40,6 @@ func (mongoDB *MongoDB) Connect() error {
 	}
 
 	mongoDB.Client = client
-
 	return nil
 }
 
